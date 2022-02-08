@@ -1,0 +1,11 @@
+D:\Code\C#\Aulas\Paticas\textEditor\bin\Debug\textEditor.exe.config
+D:\Code\C#\Aulas\Paticas\textEditor\bin\Debug\textEditor.exe
+D:\Code\C#\Aulas\Paticas\textEditor\bin\Debug\textEditor.pdb
+D:\Code\C#\Aulas\Paticas\textEditor\obj\Debug\textEditor.csproj.AssemblyReference.cache
+D:\Code\C#\Aulas\Paticas\textEditor\obj\Debug\textEditor.csproj.SuggestedBindingRedirects.cache
+D:\Code\C#\Aulas\Paticas\textEditor\obj\Debug\textEditor.Form1.resources
+D:\Code\C#\Aulas\Paticas\textEditor\obj\Debug\textEditor.Properties.Resources.resources
+D:\Code\C#\Aulas\Paticas\textEditor\obj\Debug\textEditor.csproj.GenerateResource.cache
+D:\Code\C#\Aulas\Paticas\textEditor\obj\Debug\textEditor.csproj.CoreCompileInputs.cache
+D:\Code\C#\Aulas\Paticas\textEditor\obj\Debug\textEditor.exe
+D:\Code\C#\Aulas\Paticas\textEditor\obj\Debug\textEditor.pdb
