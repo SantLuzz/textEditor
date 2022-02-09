@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 
 
-/*Falta criar as rotinas de texto, refazer, desfazer e configurações de impressão*/
+/* refazer, desfazer e configurações de impressão*/
 namespace textEditor
 {
     public partial class Form1 : Form
@@ -23,7 +23,10 @@ namespace textEditor
 
         private void close()
         {
-            this.Close();
+            if (MessageBox.Show("Deseja sair?", "Sair do Editor", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+            {
+                this.Close();
+            }            
         }
 
         private void newFile()
@@ -203,6 +206,168 @@ namespace textEditor
             rtb_main.SelectionAlignment = HorizontalAlignment.Right;
         }
 
+        private void changeFont()
+        {
+            if(fontDialog1.ShowDialog() == DialogResult.OK)
+            {
+                if(rtb_main.SelectionFont != null)
+                {
+                    rtb_main.SelectionFont = fontDialog1.Font;
+                }
+            }
+        }
+
+        private void fontBold()
+        {
+            string fontName = null;
+            float fontSize = 0;
+            bool b, i, u = false;
+
+            fontName = rtb_main.Font.Name;
+            fontSize = rtb_main.Font.Size;
+            b = rtb_main.SelectionFont.Bold;
+            i = rtb_main.SelectionFont.Italic;
+            u = rtb_main.SelectionFont.Underline;
+
+            rtb_main.SelectionFont = new Font(fontName, fontSize, FontStyle.Regular);
+
+            if (b == false)
+            {
+                if(i == true & u == true)
+                {
+                    rtb_main.SelectionFont = new Font(fontName, fontSize, FontStyle.Bold | FontStyle.Italic | FontStyle.Underline);
+                }else if (i == false & u == true)
+                {
+                    rtb_main.SelectionFont = new Font(fontName, fontSize, FontStyle.Bold | FontStyle.Underline);
+                }else if (i == true & u == false)
+                {
+                    rtb_main.SelectionFont = new Font(fontName, fontSize, FontStyle.Bold | FontStyle.Italic);
+                }else if (i == false & u == false)
+                {
+                    rtb_main.SelectionFont = new Font(fontName, fontSize, FontStyle.Bold);
+                }
+            }
+            else
+            {
+                if (i == true & u == true)
+                {
+                    rtb_main.SelectionFont = new Font(fontName, fontSize,  FontStyle.Italic | FontStyle.Underline);
+                }
+                else if (i == false & u == true)
+                {
+                    rtb_main.SelectionFont = new Font(fontName, fontSize,  FontStyle.Underline);
+                }
+                else if (i == true & u == false)
+                {
+                    rtb_main.SelectionFont = new Font(fontName, fontSize, FontStyle.Italic);
+                }
+            }
+            
+        }
+
+        private void fontItalic()
+        {
+            string fontName = null;
+            float fontSize = 0;
+            bool b, i, u = false;
+
+            fontName = rtb_main.Font.Name;
+            fontSize = rtb_main.Font.Size;
+            b = rtb_main.SelectionFont.Bold;
+            i = rtb_main.SelectionFont.Italic;
+            u = rtb_main.SelectionFont.Underline;
+            rtb_main.SelectionFont = new Font(fontName, fontSize, FontStyle.Regular);
+            if (i == false)
+            {
+                if(b == true & u == true)
+                {
+                    rtb_main.SelectionFont = new Font(fontName, fontSize, FontStyle.Italic | FontStyle.Bold | FontStyle.Underline);
+                }else if(b == false & u == true)
+                {
+                    rtb_main.SelectionFont = new Font(fontName, fontSize, FontStyle.Italic | FontStyle.Underline);
+                }else if(b == true & u == false)
+                {
+                    rtb_main.SelectionFont = new Font(fontName, fontSize, FontStyle.Italic | FontStyle.Bold);
+                }else if(b == false & u == false)
+                {
+                    rtb_main.SelectionFont = new Font(fontName, fontSize, FontStyle.Italic);
+                }
+            }
+            else
+            {
+                if(b == true & u == true)
+                {
+                    rtb_main.SelectionFont = new Font(fontName, fontSize, FontStyle.Bold | FontStyle.Underline);
+                }else if(b == false & u == true)
+                {
+                    rtb_main.SelectionFont = new Font(fontName, fontSize, FontStyle.Underline);
+                }else if(b == true & u == false)
+                {
+                    rtb_main.SelectionFont = new Font(fontName, fontSize, FontStyle.Bold);
+                }
+            }
+        }
+
+        private void fontUnderline()
+        {
+            string fontName = null;
+            float fontSize = 0;
+            bool b, i, u = false;
+
+            fontName = rtb_main.Font.Name;
+            fontSize = rtb_main.Font.Size;
+            b = rtb_main.SelectionFont.Bold;
+            i = rtb_main.SelectionFont.Italic;
+            u = rtb_main.SelectionFont.Underline;
+            rtb_main.SelectionFont = new Font(fontName, fontSize, FontStyle.Regular);
+            if (u == false)
+            {
+                if (b == true & i == true)
+                {
+                    rtb_main.SelectionFont = new Font(fontName, fontSize, FontStyle.Underline | FontStyle.Bold | FontStyle.Italic);
+                }
+                else if (b == false & i == true)
+                {
+                    rtb_main.SelectionFont = new Font(fontName, fontSize, FontStyle.Underline | FontStyle.Italic);
+                }
+                else if (b == true & i == false)
+                {
+                    rtb_main.SelectionFont = new Font(fontName, fontSize, FontStyle.Underline | FontStyle.Bold);
+                }
+                else if (b == false & i == false)
+                {
+                    rtb_main.SelectionFont = new Font(fontName, fontSize, FontStyle.Underline);
+                }
+            }
+            else
+            {
+                if (b == true & i == true)
+                {
+                    rtb_main.SelectionFont = new Font(fontName, fontSize,  FontStyle.Bold | FontStyle.Italic);
+                }
+                else if (b == false & i == true)
+                {
+                    rtb_main.SelectionFont = new Font(fontName, fontSize,  FontStyle.Italic);
+                }
+                else if (b == true & i == false)
+                {
+                    rtb_main.SelectionFont = new Font(fontName, fontSize,  FontStyle.Bold);
+                }
+            }
+        }
+
+        private void refazer()
+        {
+            Stack<string> refazer = new Stack<string>();
+            refazer.Push(rtb_main.Text);
+            rtb_main.Text = refazer.Pop();
+        }
+
+        private void desfazer()
+        {
+
+        }
+
         private void btn_newFile_Click(object sender, EventArgs e)
         {
             newFile();
@@ -265,32 +430,36 @@ namespace textEditor
 
         private void btn_close_Click(object sender, EventArgs e)
         {
+            callNewFile();
             close();
         }
 
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            callNewFile();
             close();
         }
 
         private void btn_print_Click(object sender, EventArgs e)
         {
+            printPreview();
             printFile();
         }
 
         private void imprimirToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            printPreview();
             printFile();
         }
 
         private void vizualizarImpressãoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            printPreview();
+            //printPreview();
         }
 
         private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            printPreview();
+            //printPreview();
         }
 
         private void btn_algLeft_Click(object sender, EventArgs e)
@@ -321,6 +490,51 @@ namespace textEditor
         private void centralizarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             alignmentCenter();
+        }
+
+        private void btn_font_Click(object sender, EventArgs e)
+        {
+            changeFont();
+        }
+
+        private void definirFonteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            changeFont();
+        }
+
+        private void btn_fontBold_Click(object sender, EventArgs e)
+        {
+            fontBold();
+        }
+
+        private void negritoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fontBold();
+        }
+
+        private void itálicoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fontItalic();
+        }
+
+        private void sublinhadoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fontUnderline();
+        }
+
+        private void btn_fontItalic_Click(object sender, EventArgs e)
+        {
+            fontItalic();
+        }
+
+        private void btn_fontUnderline_Click(object sender, EventArgs e)
+        {
+            fontUnderline();
+        }
+
+        private void refazerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            refazer();
         }
     }
 }

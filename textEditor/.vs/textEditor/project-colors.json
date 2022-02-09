@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "59f9ae4a-7722-406e-8c4c-a05b5ea22397": {
+      "ProjectGuid": "59f9ae4a-7722-406e-8c4c-a05b5ea22397",
+      "DisplayName": "textEditor",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
